@@ -18,7 +18,7 @@ The final two rows represent the minutes. The upper row represents 5 minute bloc
 
 ## Running tests
 
-You can execute all the specs by running **/jasmine/** from the root of the project
+You can execute all the specs by running **jasmine** from the root of the project
 
 If you want to just run one spec or only those whom file names match a certain glob pattern you can do it like this:
 
