@@ -1,16 +1,14 @@
-describe("Player", function() {
-  var berlinClock = require('../src/BerlinClock');
+import berlinClock from '../src/BerlinClock';
 
-  it("Should return the berlin clock pattern as ORRRRRROOYYRYYROOOOOYYOO for digital clock input 22:32:45", function() {
-    expect(berlinClock("22:32:45")).toBe("ORRRRRROOYYRYYROOOOOYYOO")
+describe("Berlin CLock", function() {
+  it("Should return the pattern as ORRRRRROOYYRYYROOOOOYYOO for digital clock input 22:32:45", function() {
+    expect(berlinClock("22:32:45")).toBe("ORRRRRROOYYRYYROOOOOYYOO");
   });
 
-  it("Should check for the correct berlin clock pattern for random digital clock input", function() {
-    //random testing 50 times
+  it("Should check for the correct patterns for random digital clock inputs", function() {
     for (var i = 0; i < 50; i++) {
       let time = randomTime();
       console.log("random input was " + time);
-      // Compare user's function with a working solution:
       expect(berlinClock(time)).toBe(berlinClockTest(time));
     }
   });
