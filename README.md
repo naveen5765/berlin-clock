@@ -16,15 +16,6 @@ The next two rows represent hours. The upper row represents 5 hour blocks and is
 
 The final two rows represent the minutes. The upper row represents 5 minute blocks, and is made up of 11 lamps- every third lamp is red, the rest are yellow. The bottom row represents 1 minute blocks, and is made up of 4 yellow lamps.
 
-## Running tests
-
-You can execute all the specs by running **jasmine** from the root of the project
-
-If you want to just run one spec or only those whom file names match a certain glob pattern you can do it like this:
-
-jasmine spec/appSpec.js
-jasmine "**/model/**/critical/\**/*Spec.js"
-
 ## Get Started
 
 ### `npm install`
