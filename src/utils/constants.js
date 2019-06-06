@@ -1,3 +1,7 @@
-export const LIGHT_OFF = 'O';
-export const LIGHT_YELLOW = 'Y';
-export const LIGHT_RED = 'R';
+const Constants = {
+    LIGHT_OFF: 'O',
+    LIGHT_YELLOW: 'Y',
+    LIGHT_RED: 'R'
+};
+
+module.exports = Constants;

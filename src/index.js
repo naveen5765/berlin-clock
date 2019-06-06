@@ -1,5 +1,5 @@
-import BerlinClock from './BerlinClock';
-import * as Constants from './utils/constants';
+const BerlinClock = require('./BerlinClock');
+const Constants = require('./utils/constants');
 
 var lights = document.querySelectorAll('.light');
 
@@ -25,29 +25,27 @@ function setDigitalTime(time) {
 function setBerlinClockTime(time) {
   var berlinClockTime = BerlinClock(time);
 
-  for (var i = 0; i < berlinClockTime.length && i < lights.length; i += 1) {
-    if (berlinClockTime[i] === Constants.LIGHT_YELLOW || berlinClockTime[i] === Constants.LIGHT_RED) {
-      turnOn(lights[i]);
-    } else if (berlinClockTime[i] === Constants.LIGHT_OFF) {
-      turnOff(lights[i]);
+  for (var berlinClockIndex = 0; berlinClockIndex < berlinClockTime.length && berlinClockIndex < lights.length; berlinClockIndex += 1) {
+    if (berlinClockTime[berlinClockIndex] === Constants.LIGHT_YELLOW || berlinClockTime[berlinClockIndex] === Constants.LIGHT_RED) {
+      turnOn(lights[berlinClockIndex]);
+    } else if (berlinClockTime[berlinClockIndex] === Constants.LIGHT_OFF) {
+      turnOff(lights[berlinClockIndex]);
     }
   }
 }
 
 function turnOn(light) {
-  if (light.className.includes('off')) {
+  if (light.className.includes('off')) 
     light.className = light.className.replace('off', 'on');
-  } else if (!light.className.includes('on')) {
-    light.className = light.className += ' on';
-  }
+  else if (!light.className.includes('on')) 
+    light.className += ' on';
 }
 
 function turnOff(light) {
-  if (light.className.includes('on')) {
+  if (light.className.includes('on')) 
     light.className = light.className.replace('on', 'off');
-  } else if (!light.className.includes('off')) {
-    light.className = light.className += ' off';
-  }
+  else if (!light.className.includes('off')) 
+    light.className += ' off';
 }
 
 function addZero(number) {

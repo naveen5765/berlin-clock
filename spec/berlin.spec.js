@@ -1,4 +1,4 @@
-import berlinClock from '../src/BerlinClock';
+const berlinClock = require("../src/BerlinClock");
 
 describe("Berlin CLock", function() {
   it("Should return the pattern as ORRRRRROOYYRYYROOOOOYYOO for digital clock input 22:32:45", function() {
@@ -8,7 +8,7 @@ describe("Berlin CLock", function() {
   it("Should check for the correct patterns for random digital clock inputs", function() {
     for (var i = 0; i < 50; i++) {
       let time = randomTime();
-      console.log("random input was " + time);
+      // console.log("random input was " + time);
       expect(berlinClock(time)).toBe(berlinClockTest(time));
     }
   });
