@@ -52,7 +52,7 @@ function turnOff(light) {
 
 function addZero(number) {
   if (number < 10) {
-    number = "0" + i;
+    number = "0" + number;
   }
   return number;
 }
