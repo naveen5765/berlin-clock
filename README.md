@@ -30,8 +30,17 @@ In order to run in different port please refer top answer from [stack overflow](
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner and generates code coverage report under /coverage folder.<br>
+
+Testing framework used : [Mocha](https://mochajs.org)
+Mocha is a feature-rich JavaScript test framework running on Node.js, making asynchronous testing simple and fun.
+
+### `npm run mutation-test`
+
+Runs mutation testing of the project
+Plugin used : [stryker](https://stryker-mutator.io)
+
+Bugs, or mutants, are automatically inserted into production code. Tests are ran for each mutant. If tests fail then the mutant is killed. If the tests passed, the mutant survived. The higher the percentage of mutants killed, the more effective the tests are.
 
 ## Code Commiting Guidelines:
 

@@ -1,7 +1,11 @@
 const Constants = {
     LIGHT_OFF: 'O',
     LIGHT_YELLOW: 'Y',
-    LIGHT_RED: 'R'
+    LIGHT_RED: 'R',
+    TOTAL_FIVE_HOURS_LIGHTS: 4,
+    TOTAL_SINGLE_HOURS_LIGHTS: 4,
+    TOTAL_FIVE_MINUTES_LIGHTS: 11,
+    TOTAL_SINGLE_MINUTES_LIGHTS: 4
 };
 
-module.exports = Constants;
+export default Constants;
