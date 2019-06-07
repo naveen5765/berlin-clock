@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "berlin-clock",
   "scripts": {
-    "test": "jasmine",
+    "test": "nyc mocha --recursive",
+    "mutation-test": "stryker run",
     "build": "webpack --mode development",
     "start": "npm run build; webpack-dev-server --open --mode development",
     "lint": "eslint src/*.js"
@@ -11,6 +12,14 @@
   "repository": {
     "type": "git",
     "url": ""
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "text",
+      "html"
+    ]
   },
   "license": "ISC",
   "devDependencies": {
@@ -23,12 +32,18 @@
     "eslint": "^4.19.1",
     "eslint-loader": "^2.0.0",
     "html-webpack-plugin": "^3.0.6",
-    "jasmine": "^3.1.0",
-    "jasmine-core": "^2.99.1",
     "style-loader": "^0.20.2",
     "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "4.19.1",
     "webpack-cli": "^2.0.9",
-    "webpack-dev-server": "^3.1.0"
+    "webpack-dev-server": "^3.1.0",
+    "@stryker-mutator/core": "^1.1.1",
+    "@stryker-mutator/html-reporter": "^1.1.1",
+    "@stryker-mutator/javascript-mutator": "^1.1.1",
+    "@stryker-mutator/mocha-runner": "^1.1.1",
+    "approvals": "^3.0.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0"
   }
 }

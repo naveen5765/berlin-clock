@@ -1,15 +1,16 @@
+var expect = require('chai').expect;
 const berlinClock = require("../src/BerlinClock");
 
 describe("Berlin CLock", function() {
   it("Should return the pattern as ORRRRRROOYYRYYROOOOOYYOO for digital clock input 22:32:45", function() {
-    expect(berlinClock("22:32:45")).toBe("ORRRRRROOYYRYYROOOOOYYOO");
+    expect(berlinClock("22:32:45")).to.equal("ORRRRRROOYYRYYROOOOOYYOO");
   });
 
   it("Should check for the correct patterns for random digital clock inputs", function() {
     for (var i = 0; i < 50; i++) {
       let time = randomTime();
       // console.log("random input was " + time);
-      expect(berlinClock(time)).toBe(berlinClockTest(time));
+      expect(berlinClock(time)).to.equal(berlinClockTest(time));
     }
   });
 
