@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
-const berlinClock = require("../src/BerlinClock");
+import { expect } from 'chai';
+import berlinClock from '../src/BerlinClock';
 
 describe("Berlin CLock", function() {
   it("Should return the pattern as ORRRRRROOYYRYYROOOOOYYOO for digital clock input 22:32:45", function() {
