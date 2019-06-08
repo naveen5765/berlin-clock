@@ -1,57 +1,16 @@
-import BerlinClock from './BerlinClock';
-import Constants from './utils/constants';
+import DigitalTime from './model/digitalTime';
+import ClockPresenter from './presenter/clockPresenter';
+import ClockView from './view/clockView';
 
-let lights = document.querySelectorAll('.light');
 let updateClock;
+const clock = new ClockPresenter(new ClockView());
 
-const setDigitalTime = (time) => {
-  document.getElementById("digitalClock").innerText = time;
-  document.getElementById("digitalClock").textContent = time;
-};
-
-const setBerlinClockTime = (time) => {
-  const berlinClockTime = BerlinClock(time);
-
-  for (let berlinClockIndex = 0; berlinClockIndex < berlinClockTime.length && berlinClockIndex < lights.length; berlinClockIndex += 1) {
-    if (berlinClockTime[berlinClockIndex] === Constants.LIGHT_YELLOW || berlinClockTime[berlinClockIndex] === Constants.LIGHT_RED) {
-      turnOnLight(lights[berlinClockIndex]);
-    } else if (berlinClockTime[berlinClockIndex] === Constants.LIGHT_OFF) {
-      turnOffLight(lights[berlinClockIndex]);
-    }
-  }
-};
-
-const turnOnLight = (light) => {
-  if (light.className.includes('off')) 
-    light.className = light.className.replace('off', 'on');
-  else if (!light.className.includes('on')) 
-    light.className += ' on';
-};
-
-const turnOffLight = (light) => {
-  if (light.className.includes('on')) 
-    light.className = light.className.replace('on', 'off');
-  else if (!light.className.includes('off')) 
-    light.className += ' off';
-};
-
-const addZero = (number) => {
-  if (number < 10) {
-    number = "0" + number;
-  }
-  return number;
-};
-
+document.getElementById('container').innerHTML = clock.getView().getHtml();
+ 
 (updateClock = () => {
-  const date = new Date();
+    const digitalTime = new DigitalTime().getTime();
 
-  const hour = addZero(date.getHours());
-  const minute = addZero(date.getMinutes());
-  const second = addZero(date.getSeconds());
-  const time = hour + ":" + minute + ":" + second;
+    clock.setTime(digitalTime);
 
-  setDigitalTime(time);
-  setBerlinClockTime(time);
-
-  window.requestAnimationFrame(updateClock);
+    window.requestAnimationFrame(updateClock);
 })();

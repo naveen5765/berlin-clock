@@ -18,3 +18,10 @@ export const modulo5 = (number) => {
 export const modulo3 = (number) => {
     return number % 3; 
 };
+
+export const prependZero = (number) => {
+    if (number < 10) {
+      number = "0" + number;
+    }
+    return number;
+};
