@@ -37,7 +37,7 @@ Mocha is a feature-rich JavaScript test framework running on Node.js, making asy
 
 ### `npm run mutation-test`
 
-Runs mutation testing of the project
+Runs mutation testing of the project and generates the report under /reports folder.<br>
 Plugin used : [stryker](https://stryker-mutator.io)
 
 Bugs, or mutants, are automatically inserted into production code. Tests are ran for each mutant. If tests fail then the mutant is killed. If the tests passed, the mutant survived. The higher the percentage of mutants killed, the more effective the tests are.
@@ -50,6 +50,6 @@ Inspired from [Udacity](https://udacity.github.io/git-styleguide/)
 - docs: changes to documentation (Readme file)
 - feat: a new feature with test case
 - fix: a bug fix
-- tyle: formatting, missing semi colons, etc.. no code change
+- style: formatting, missing semi colons, etc.. no code change
 - refactor: refactoring production code
 - test: Refactoring test; no production code change
