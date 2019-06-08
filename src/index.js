@@ -3,7 +3,7 @@ import ClockPresenter from './presenter/clockPresenter';
 import ClockView from './view/clockView';
 
 let updateClock;
-const clock = new ClockPresenter(new ClockView());
+const clock = ClockPresenter(ClockView());
 
 document.getElementById('container').innerHTML = clock.getView().getHtml();
  

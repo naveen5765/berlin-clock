@@ -4,7 +4,7 @@ import berlinClock,
     fiveHoursLights, 
     singleHoursLights, 
     fiveMinutesLights, 
-    singleMinutesLights } from '../src/BerlinClock';
+    singleMinutesLights } from '../src/presenter/clockPresenter';
 
 describe("Berlin CLock", () => {
 

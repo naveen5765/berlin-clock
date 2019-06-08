@@ -1,15 +1,17 @@
 import { prependZero } from '../utils/helpers';
 
-export default class DigitalTime{
+const DigitalTime = (date = new Date()) => {
+    
+    const hour = prependZero(date.getHours());
+    const minute = prependZero(date.getMinutes());
+    const second = prependZero(date.getSeconds());
+    const time = hour + ":" + minute + ":" + second;
 
-    constructor(date = new Date()){
-        const hour = prependZero(date.getHours());
-        const minute = prependZero(date.getMinutes());
-        const second = prependZero(date.getSeconds());
-        this.time = hour + ":" + minute + ":" + second;
-    }
+    return {
+        getTime: () => {
+            return time;
+        }
+    };
+};
 
-    getTime() {
-        return this.time;
-    }
-}
+export default DigitalTime;

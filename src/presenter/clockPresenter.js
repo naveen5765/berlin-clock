@@ -1,81 +1,83 @@
 import Constants from '../utils/constants';
-import { isValidTime, isEvenNumber, modulo5, modulo3 } from '../utils/helpers';
+import { isInValidTime, isEven, modulo5, isMultipleOf3, splitDigitalTime } from '../utils/helpers';
 
-export default class ClockPresenter {
+const ClockPresenter = (_view) => {
+ 
+    let clockView = _view;
 
-    constructor(_view){
-        this.clockView = _view;
-    }
-
-    getView() {
-        return this.clockView;
-    }
+    const isLightTurnedOn = (currentLightIndex, totalLightsTurnedOn) => {
+        return currentLightIndex <= totalLightsTurnedOn;
+    };
     
-    lights(numberOfLightsOn, totalNumberOfLights, color) {
+    const lights = (numberOfLightsOn, totalNumberOfLights, color) => {
         let lights = "";
-        for (let lightIndex = 0; lightIndex < totalNumberOfLights; lightIndex++) {
-            lights += lightIndex < numberOfLightsOn ? color(lightIndex) : Constants.LIGHT_OFF;
+        for (let lightIndex = 1; lightIndex <= totalNumberOfLights; lightIndex++) {
+            lights += isLightTurnedOn(lightIndex, numberOfLightsOn) ? color(lightIndex) : Constants.LIGHT_OFF;
         }
         return lights;
-    }
+    };
 
-    secondsLight(seconds) {
-        return isEvenNumber(seconds) ? Constants.LIGHT_YELLOW : Constants.LIGHT_OFF;
-    }
+    const secondsLight = (seconds) => {
+        return isEven(seconds) ? Constants.LIGHT_YELLOW : Constants.LIGHT_OFF;
+    };
 
-    fiveHoursLights(hours) {
+    const fiveHoursLights = (hours) => {
         let fiveHoursCount = Math.floor(hours / 5);
-        return this.lights(
+        return lights(
             fiveHoursCount, 
             Constants.TOTAL_FIVE_HOURS_LIGHTS, 
             () => Constants.LIGHT_RED);
-    }
+    };
 
-    singleHoursLights(hours) {
+    const singleHoursLights = (hours) => {
         let oneHoursCount = modulo5(hours);
-        return this.lights(
+        return lights(
             oneHoursCount, 
             Constants.TOTAL_SINGLE_HOURS_LIGHTS, 
             () => Constants.LIGHT_RED);
-    }
+    };
 
-    fiveMinutesLights(minutes) {
+    const fiveMinutesLights = (minutes) => {
         let fiveMinutesCount = Math.floor(minutes / 5);
-        return this.lights(
+        return lights(
             fiveMinutesCount, 
             Constants.TOTAL_FIVE_MINUTES_LIGHTS, 
-            (lightIndex) => modulo3(lightIndex + 1) === 0 ? Constants.LIGHT_RED : Constants.LIGHT_YELLOW);
-    }
+            (lightIndex) => isMultipleOf3(lightIndex) ? Constants.LIGHT_RED : Constants.LIGHT_YELLOW);
+    };
 
-    singleMinutesLights(minutes) {
+    const singleMinutesLights = (minutes) => {
         let minutesCount = modulo5(minutes);
-        return this.lights(
+        return lights(
             minutesCount, 
             Constants.TOTAL_SINGLE_MINUTES_LIGHTS, 
             () => Constants.LIGHT_YELLOW);
-    }
+    };
 
-    getBerlinClockTime(time) {
-        if(isValidTime(time)){
-            let timeParts = time.split(":");
-            let hours = timeParts[0];
-            let minutes = timeParts[1];
-            let seconds = timeParts[2];
-
-            return this.secondsLight(seconds) +
-                this.fiveHoursLights(hours) +
-                this.singleHoursLights(hours) +
-                this.fiveMinutesLights(minutes) +
-                this.singleMinutesLights(minutes);
-        }else{
+    const getBerlinClockTime = (time) => {
+        if(isInValidTime(time))
             throw "Entered Time is Invalid. Please check and try again";
+
+        const { hours, minutes, seconds } =  splitDigitalTime(time);
+
+        return secondsLight(seconds) +
+            fiveHoursLights(hours) +
+            singleHoursLights(hours) +
+            fiveMinutesLights(minutes) +
+            singleMinutesLights(minutes);
+    };
+
+    return {
+        getView: function(){
+            return clockView;
+        },
+        
+        setTime: function(digitalTime){
+            const berlinClockTime = getBerlinClockTime(digitalTime);
+
+            clockView.setBerlinTime(berlinClockTime);
+            clockView.setDigitalTime(digitalTime);
         }
-    }
+    };
+};
 
-    setTime(digitalTime) {
-        const berlinClockTime = this.getBerlinClockTime(digitalTime);
-
-        this.clockView.setBerlinTime(berlinClockTime);
-        this.clockView.setDigitalTime(digitalTime);
-    }
-}
+export default ClockPresenter;
